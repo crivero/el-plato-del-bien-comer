@@ -82,3 +82,4 @@ export default function Home() {
     <div className="text-sm text-gray-600">Puntaje: {puntaje}</div>
   </div>
 );
+}
