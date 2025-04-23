@@ -1,12 +1,12 @@
 import { useState } from "react";
 
 const alimentos = [
-  { nombre: "Manzana", grupo: "Verduras y Frutas", imagen: "/images/manzana.png" },
-  { nombre: "Pan integral", grupo: "Granos y Cereales", imagen: "/images/pan.png" },
-  { nombre: "Frijoles", grupo: "Leguminosas", imagen: "/images/frijoles.png" },
-  { nombre: "Zanahoria", grupo: "Verduras y Frutas", imagen: "/images/zanahoria.png" },
-  { nombre: "Pollo", grupo: "Origen Animal", imagen: "/images/pollo.png" },
-  { nombre: "Arroz", grupo: "Granos y Cereales", imagen: "/images/arroz.png" }
+  { nombre: "Manzana", grupo: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Verduras-y-Frutas/manzana.png" },
+  { nombre: "Amaranto", grupo: "Granos y Cereales", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Granos-y-Cereales/amaranto.png" },
+  { nombre: "Alubias", grupo: "Leguminosas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Leguminosas/alubias.png" },
+  { nombre: "Zanahoria", grupo: "Verduras y Frutas", imagen: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Verduras-y-Frutas/zanahorias.png" },
+  { nombre: "Pollo", grupo: "Origen Animal", imagen: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Origen-Animal/pollo.png" },
+  { nombre: "Arroz", grupo: "Granos y Cereales", imagen: "Granos y Cereales", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Granos-y-Cereales/arroz.png" }
 ];
 
 const grupos = [
