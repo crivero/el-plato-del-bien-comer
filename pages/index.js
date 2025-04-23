@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./styles.css"; // asegúrate que el nombre y la ruta coincidan
+import "../styles/styles.css";
 
 
 const alimentos = [
