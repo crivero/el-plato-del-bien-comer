@@ -10,7 +10,7 @@ const alimentos = [
   { nombre: "Calabacitas", grupo: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Verduras-y-Frutas/calabacitas.png" },
   { nombre: "Champiñon", grupo: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Verduras-y-Frutas/champiñon.png" },
   { nombre: "Chayotes", grupo: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Verduras-y-Frutas/chayotes.png" },
-  { nombre: "Chicharo", grupo: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Verduras-y-Frutas/chicharos.png" },
+  { nombre: "Chicharos", grupo: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Verduras-y-Frutas/chicharos.png" },
   { nombre: "Chile Poblano", grupo: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Verduras-y-Frutas/chile_poblano.png" },
   { nombre: "Ciruela Pasa", grupo: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Verduras-y-Frutas/ciruela_pasa.png" },
   { nombre: "Col", grupo: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Verduras-y-Frutas/col.png" },
