@@ -1,12 +1,12 @@
 import { useState } from "react";
 
 const alimentos = [
-  { nombre: "Manzana", grupo: "Frutas y Verduras", imagen: "/images/manzana.png" },
-  { nombre: "Pan integral", grupo: "Cereales", imagen: "/images/pan.png" },
+  { nombre: "Manzana", grupo: "Verduras y Frutas", imagen: "/images/manzana.png" },
+  { nombre: "Pan integral", grupo: "Granos y Cereales", imagen: "/images/pan.png" },
   { nombre: "Frijoles", grupo: "Leguminosas", imagen: "/images/frijoles.png" },
-  { nombre: "Zanahoria", grupo: "Frutas y Verduras", imagen: "/images/zanahoria.png" },
+  { nombre: "Zanahoria", grupo: "Verduras y Frutas", imagen: "/images/zanahoria.png" },
   { nombre: "Pollo", grupo: "Origen Animal", imagen: "/images/pollo.png" },
-  { nombre: "Arroz", grupo: "Cereales", imagen: "/images/arroz.png" }
+  { nombre: "Arroz", grupo: "Granos y Cereales", imagen: "/images/arroz.png" }
 ];
 
 const grupos = [
