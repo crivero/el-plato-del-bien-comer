@@ -39,7 +39,7 @@ const alimentos = [
   { nombre: "Toronja", grupo: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Verduras-y-Frutas/toronja.png" },
   { nombre: "Tuna", grupo: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Verduras-y-Frutas/tuna.png" },
   { nombre: "Uvas Verdes", grupo: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Verduras-y-Frutas/uvas_verdes.png" },
-  { nombre: "Zanahoria", grupo: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Verduras-y-Frutas/zanahoria.png" },
+  { nombre: "Zanahoria", grupo: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Verduras-y-Frutas/zanahorias.png" },
   { nombre: "Zapote", grupo: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Verduras-y-Frutas/zapote.png" },
   { nombre: "Zarzamora", grupo: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Verduras-y-Frutas/zarzamora.png" },
   { nombre: "Atún", grupo: "Origen Animal", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Origen-Animal/atun.png" },
