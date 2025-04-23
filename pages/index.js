@@ -10,8 +10,8 @@ const alimentos = [
 ];
 
 const grupos = [
-  { nombre: "Frutas y Verduras", color: "bg-green-500" },
-  { nombre: "Cereales", color: "bg-yellow-400" },
+  { nombre: "Verduras y Frutas", color: "bg-green-500" },
+  { nombre: "Granos y Cereales", color: "bg-yellow-400" },
   { nombre: "Leguminosas", color: "bg-orange-400" },
   { nombre: "Origen Animal", color: "bg-red-500" },
   { nombre: "Aceites y Grasas Saludables", color: "bg-amber-900" }
