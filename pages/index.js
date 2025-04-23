@@ -88,136 +88,76 @@ const alimentos = [
 ];
 
 const grupos = [
-  { nombre: "Verduras y Frutas", color: "bg-green-500 hover:bg-green-600" },
-  { nombre: "Granos y Cereales", color: "bg-yellow-400 hover:bg-yellow-500" },
-  { nombre: "Leguminosas", color: "bg-orange-400 hover:bg-orange-500" },
-  { nombre: "Origen Animal", color: "bg-red-500 hover:bg-red-600" },
-  { nombre: "Aceites y Grasas Saludables", color: "bg-amber-700 hover:bg-amber-800" }
+  { nombre: "Verduras y Frutas", color: "bg-green-500" },
+  { nombre: "Granos y Cereales", color: "bg-yellow-400" },
+  { nombre: "Leguminosas", color: "bg-orange-400" },
+  { nombre: "Origen Animal", color: "bg-red-500" },
+  { nombre: "Aceites y Grasas Saludables", color: "bg-amber-900" }
 ];
 
 export default function Home() {
-  const [alimentosAleatorios, setAlimentosAleatorios] = useState([]);
-  const [indiceActual, setIndiceActual] = useState(0);
+  const [indice, setIndice] = useState(0);
   const [mensaje, setMensaje] = useState("");
   const [puntaje, setPuntaje] = useState(0);
-  const [juegoTerminado, setJuegoTerminado] = useState(false);
-  const [mostrarResultados, setMostrarResultados] = useState(false);
 
-  // Seleccionar 5 alimentos al azar al iniciar
-  useEffect(() => {
-    iniciarJuego();
-  }, []);
-
-  const iniciarJuego = () => {
-    // Mezclar array y tomar 5 elementos
-    const mezclados = [...alimentos].sort(() => 0.5 - Math.random()).slice(0, 5);
-    setAlimentosAleatorios(mezclados);
-    setIndiceActual(0);
-    setPuntaje(0);
-    setJuegoTerminado(false);
-    setMostrarResultados(false);
-    setMensaje("");
-  };
-
-  const alimentoActual = alimentosAleatorios[indiceActual];
+  const alimentoActual = alimentos[indice];
 
   const manejarRespuesta = (grupoSeleccionado) => {
-    if (juegoTerminado) return;
-
     if (grupoSeleccionado === alimentoActual.grupo) {
-      setMensaje("✅ ¡Correcto! +2 puntos");
-      setPuntaje(puntaje + 2);
+      setMensaje("✅ ¡Correcto!");
+      setPuntaje(puntaje + 1);
     } else {
-      setMensaje("❌ Incorrecto");
+      setMensaje("❌ Intenta de nuevo");
     }
-
     setTimeout(() => {
       setMensaje("");
-      
-      // Verificar si es el último alimento
-      if (indiceActual === alimentosAleatorios.length - 1) {
-        setJuegoTerminado(true);
-        setMostrarResultados(true);
-      } else {
-        setIndiceActual(indiceActual + 1);
-      }
+      setIndice((indice + 1) % alimentos.length);
     }, 1500);
   };
 
-  if (alimentosAleatorios.length === 0) {
-    return <div className="p-6 max-w-3xl mx-auto text-center">Cargando...</div>;
-  }
-
   return (
-    <div className="p-6 max-w-3xl mx-auto text-center">
-      <h1 className="text-3xl font-bold text-green-700 mb-4">¡Vamos a Comer Bien!</h1>
+  <div className="p-6 max-w-3xl mx-auto text-center">
+    <h1 className="text-3xl font-bold text-green-700 mb-4">¡Vamos a Comer Bien!</h1>
 
-      {/* Mostrar progreso */}
-      <div className="mb-2">
-        <span className="font-medium">Pregunta {indiceActual + 1} de 5</span>
-      </div>
-
-      {/* Mostrar resultados finales */}
-      {mostrarResultados && (
-        <div className="bg-white shadow-lg rounded-lg p-6 mb-6 animate-fade-in">
-          <h2 className="text-2xl font-bold text-green-700 mb-4">¡Juego Terminado!</h2>
-          <p className="text-xl mb-4">Tu puntaje final: <span className="font-bold">{puntaje}/10</span></p>
-          <button
-            onClick={iniciarJuego}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition-colors"
-          >
-            Jugar de nuevo
-          </button>
-        </div>
-      )}
-
-      {/* Contenido del juego (se oculta cuando terminó) */}
-      {!mostrarResultados && (
-        <>
-          {/* Imagen del Plato del Bien Comer */}
-          <div className="mb-6">
-            <img
-              src="https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/plato_bien_comer.png"
-              alt="Plato del Bien Comer"
-              className="mx-auto w-80 h-auto rounded-lg shadow-md"
-            />
-          </div>
-
-          <p className="text-lg mb-6">
-            Clasifica el alimento en el grupo correcto del Plato del Bien Comer
-          </p>
-
-          <div className="bg-white shadow-xl mb-6 p-4 rounded-xl">
-            <img
-              src={alimentoActual.imagen}
-              alt={alimentoActual.nombre}
-              className="mx-auto h-40 object-contain"
-            />
-            <h2 className="text-2xl font-semibold mt-4">{alimentoActual.nombre}</h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
-            {grupos.map((grupo) => (
-              <button
-                key={grupo.nombre}
-                onClick={() => manejarRespuesta(grupo.nombre)}
-                className={`${grupo.color} text-white font-medium py-4 px-2 rounded-xl transition-colors duration-200 shadow-md`}
-                disabled={juegoTerminado}
-              >
-                {grupo.nombre}
-              </button>
-            ))}
-          </div>
-        </>
-      )}
-
-      {mensaje && (
-        <div className="text-xl font-semibold text-green-600 animate-pulse mb-2">
-          {mensaje}
-        </div>
-      )}
-
-      <div className="text-sm text-gray-600">Puntaje actual: {puntaje}</div>
+    {/* Imagen del Plato del Bien Comer */}
+    <div className="mb-6">
+      <img
+        src="https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/plato_bien_comer.png"
+        alt="Plato del Bien Comer"
+        className="mx-auto w-80 h-auto rounded-lg shadow-md"
+      />
     </div>
-  );
+
+    <p className="text-lg mb-6">
+      Clasifica el alimento en el grupo correcto del Plato del Bien Comer
+    </p>
+
+    <div className="bg-white shadow-xl mb-6 p-4 rounded-xl">
+      <img
+        src={alimentoActual.imagen}
+        alt={alimentoActual.nombre}
+        className="mx-auto h-40 object-contain"
+      />
+      <h2 className="text-2xl font-semibold mt-4">{alimentoActual.nombre}</h2>
+    </div>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+      {grupos.map((grupo) => (
+        <button
+          key={grupo.nombre}
+          onClick={() => manejarRespuesta(grupo.nombre)}
+          className={`text-white text-base py-4 rounded-xl ${grupo.color}`}
+        >
+          {grupo.nombre}
+        </button>
+      ))}
+    </div>
+
+    {mensaje && (
+      <div className="text-xl font-semibold text-green-600 animate-pulse mb-2">{mensaje}</div>
+    )}
+
+    <div className="text-sm text-gray-600">Puntaje: {puntaje}</div>
+  </div>
+);
 }
