@@ -1,4 +1,4 @@
-import "el-plato-del-bien-comer/styles/styles.css";
+import "../styles/styles.css";
 import { useState } from "react";
 
 const alimentos = [
