@@ -115,9 +115,9 @@ function JuegoAlimentos() {
   const manejarRespuesta = (grupoSeleccionado) => {
     if (grupoSeleccionado === alimentoActual.grupo) {
       setPuntos(prev => prev + 2);
-      setMensaje('¡Correcto! +2 puntos');
+      setMensaje('✅ ¡Correcto!');
     } else {
-      setMensaje(`Incorrecto. Era del grupo: ${alimentoActual.grupo}`);
+      setMensaje(`❌ Intenta de nuevo. Era del grupo: ${alimentoActual.grupo}`);
     }
 
     setIntentos(prev => prev + 1);
