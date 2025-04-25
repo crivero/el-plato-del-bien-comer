@@ -1,5 +1,6 @@
 import "/src/styles/index.css";
 import { useState } from "react";
+import { useEffect } from 'react';
 
 const alimentos = [
   { nombre: "Acelgas", grupo: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Verduras-y-Frutas/acelga.png" },
