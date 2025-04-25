@@ -1,6 +1,7 @@
 import "/src/styles/index.css";
 import { useState } from "react";
 import { useEffect } from 'react';
+import { useRef } from 'react';
 
 const alimentos = [
   { nombre: "Acelgas", grupo: "Verduras y Frutas", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Verduras-y-Frutas/acelga.png" },
@@ -95,6 +96,7 @@ function JuegoAlimentos() {
   const [puntos, setPuntos] = useState(0);
   const [intentos, setIntentos] = useState(0);
   const [mensaje, setMensaje] = useState('');
+  const timeoutRef = useRef(null);
 
   const seleccionarAlimentoAleatorio = () => {
     const indice = Math.floor(Math.random() * alimentos.length);
@@ -102,6 +104,10 @@ function JuegoAlimentos() {
   };
 
   const reiniciarJuego = () => {
+    // Limpiar cualquier timeout pendiente
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
     setPuntos(0);
     setIntentos(0);
     setMensaje('');
@@ -110,14 +116,29 @@ function JuegoAlimentos() {
 
   useEffect(() => {
     reiniciarJuego();
+    // Limpieza al desmontar el componente
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
   }, []);
 
   const manejarRespuesta = (grupoSeleccionado) => {
+    // Limpiar cualquier timeout pendiente antes de continuar
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
     if (grupoSeleccionado === alimentoActual.grupo) {
       setPuntos(prev => prev + 2);
       setMensaje('✅ ¡Correcto!');
     } else {
       setMensaje(`❌ Intenta de nuevo. Era del grupo: ${alimentoActual.grupo}`);
+      // Configurar timeout para limpiar el mensaje después de 10 segundos (10000 ms)
+      timeoutRef.current = setTimeout(() => {
+        setMensaje('');
+      }, 10000);
     }
 
     setIntentos(prev => prev + 1);
@@ -130,24 +151,28 @@ function JuegoAlimentos() {
     } else {
       setTimeout(() => {
         setAlimentoActual(seleccionarAlimentoAleatorio());
-        setMensaje('');
+        // No limpiamos el mensaje aquí si es un error (ya que queremos que se muestre por 10 segundos)
+        if (grupoSeleccionado === alimentoActual.grupo) {
+          setMensaje('');
+        }
       }, 1000);
     }
   };
 
+  // ... (el resto del componente se mantiene igual)
   return (
     <div className="p-4 max-w-xl mx-auto text-center">
       <h1 className="text-2xl font-bold mb-4">¡Vamos a Comer Bien!</h1>
 
-    {/* Imagen del Plato del Bien Comer */}
-    <div className="mb-6">
-      <img
-        src="https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/plato_bien_comer.png"
-        alt="Plato del Bien Comer"
-        className="mx-auto w-80 h-auto rounded-lg shadow-md"
-      />
-    </div>
-    
+      {/* Imagen del Plato del Bien Comer */}
+      <div className="mb-6">
+        <img
+          src="https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/plato_bien_comer.png"
+          alt="Plato del Bien Comer"
+          className="mx-auto w-80 h-auto rounded-lg shadow-md"
+        />
+      </div>
+      
       <img src={alimentoActual.imagen} alt={alimentoActual.nombre} className="mx-auto h-32 object-contain mb-4" />
       <p className="mb-4 text-lg">¿A qué grupo pertenece <strong>{alimentoActual.nombre}</strong>?</p>
       <div className="grid grid-cols-2 gap-2 mb-4">
