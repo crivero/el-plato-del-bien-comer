@@ -124,40 +124,39 @@ function JuegoAlimentos() {
     };
   }, []);
 
-  const manejarRespuesta = (grupoSeleccionado) => {
-    // Limpiar cualquier timeout pendiente antes de continuar
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    if (grupoSeleccionado === alimentoActual.grupo) {
-      setPuntos(prev => prev + 2);
-      setMensaje('✅ ¡Correcto!');
-    } else {
-      setMensaje(`❌ Intenta de nuevo. Era del grupo: ${alimentoActual.grupo}`);
-      // Configurar timeout para limpiar el mensaje después de 10 segundos (10000 ms)
-      timeoutRef.current = setTimeout(() => {
-        setMensaje('');
-      }, 10000);
-    }
-
-    setIntentos(prev => prev + 1);
-
+const manejarRespuesta = (grupoSeleccionado) => {
+  if (grupoSeleccionado === alimentoActual.grupo) {
+    setPuntos(prev => prev + 2);
+    setMensaje('✅ ¡Correcto!');
+    
     if (intentos + 1 >= 5) {
       setTimeout(() => {
-        alert(`¡Juego terminado! Obtuviste ${puntos + (grupoSeleccionado === alimentoActual.grupo ? 2 : 0)} puntos.`);
+        alert(`¡Juego terminado! Obtuviste ${puntos + 2} puntos.`);
         reiniciarJuego();
       }, 500);
     } else {
       setTimeout(() => {
         setAlimentoActual(seleccionarAlimentoAleatorio());
-        // No limpiamos el mensaje aquí si es un error (ya que queremos que se muestre por 10 segundos)
-        if (grupoSeleccionado === alimentoActual.grupo) {
-          setMensaje('');
-        }
+        setMensaje('');
       }, 1000);
     }
-  };
+  } else {
+    setMensaje(`❌ Intenta de nuevo. Era del grupo: ${alimentoActual.grupo}`);
+    setIntentos(prev => prev + 1);
+    
+    // Limpiar el mensaje después de 10 segundos
+    setTimeout(() => {
+      setMensaje('');
+    }, 10000);
+
+    if (intentos + 1 >= 5) {
+      setTimeout(() => {
+        alert(`¡Juego terminado! Obtuviste ${puntos} puntos.`);
+        reiniciarJuego();
+      }, 10500); // Un poco después que se muestre el mensaje
+    }
+  }
+};
 
   // ... (el resto del componente se mantiene igual)
   return (
