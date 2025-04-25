@@ -88,8 +88,13 @@ const alimentos = [
   { nombre: "Semillas de Girasol", grupo: "Aceites y Grasas Saludables", imagen: "https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/Aceites-y-Grasas-Saludables/semillas_de_girasol.png" },   
 ];
 
-const grupos = ['Frutas y Verduras', 'Granos y Cereales', 'Leguminosas', 'Origen Animal', 'Aceites y Grasas Saludables'];
-
+const grupos = [
+  { nombre: "Verduras y Frutas", color: "bg-green-500" },
+  { nombre: "Granos y Cereales", color: "bg-yellow-400" },
+  { nombre: "Leguminosas", color: "bg-orange-400" },
+  { nombre: "Origen Animal", color: "bg-red-500" },
+  { nombre: "Aceites y Grasas Saludables", color: "bg-amber-900" }
+];
 function JuegoAlimentos() {
   const [alimentoActual, setAlimentoActual] = useState({});
   const [puntos, setPuntos] = useState(0);
