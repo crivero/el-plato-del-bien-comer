@@ -1,4 +1,4 @@
-import "/src/styles/styles.css";
+import "/src/styles/index.css";
 import { useState } from "react";
 
 const alimentos = [
