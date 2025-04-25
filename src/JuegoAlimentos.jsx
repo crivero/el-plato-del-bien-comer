@@ -125,37 +125,44 @@ function JuegoAlimentos() {
   }, []);
 
 const manejarRespuesta = (grupoSeleccionado) => {
+  // Limpiar timeout anterior si existe
+  if (timeoutRef.current) {
+    clearTimeout(timeoutRef.current);
+  }
+
+  const nuevoIntentos = intentos + 1;
+  const esUltimoIntento = nuevoIntentos >= 5;
+  
   if (grupoSeleccionado === alimentoActual.grupo) {
-    setPuntos(prev => prev + 2);
+    const nuevosPuntos = puntos + 2;
+    setPuntos(nuevosPuntos);
     setMensaje('✅ ¡Correcto!');
     
-    if (intentos + 1 >= 5) {
-      setTimeout(() => {
-        alert(`¡Juego terminado! Obtuviste ${puntos + 2} puntos.`);
+    timeoutRef.current = setTimeout(() => {
+      if (esUltimoIntento) {
+        alert(`¡Juego terminado! Obtuviste ${nuevosPuntos} puntos.`);
         reiniciarJuego();
-      }, 500);
-    } else {
-      setTimeout(() => {
+      } else {
         setAlimentoActual(seleccionarAlimentoAleatorio());
         setMensaje('');
-      }, 1000);
-    }
+      }
+    }, 1000);
   } else {
-    setMensaje(`❌ Intenta de nuevo. Era del grupo: ${alimentoActual.grupo}`);
-    setIntentos(prev => prev + 1);
+    setMensaje(`❌ Incorrecto. Era del grupo: ${alimentoActual.grupo}`);
+    setIntentos(nuevoIntentos);
     
-    // Limpiar el mensaje después de 10 segundos
-    setTimeout(() => {
-      setMensaje('');
-    }, 10000);
-
-    if (intentos + 1 >= 5) {
-      setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
+      if (esUltimoIntento) {
         alert(`¡Juego terminado! Obtuviste ${puntos} puntos.`);
         reiniciarJuego();
-      }, 10500); // Un poco después que se muestre el mensaje
-    }
+      } else {
+        setMensaje('');
+      }
+    }, esUltimoIntento ? 1000 : 10000);
   }
+
+  // Actualizar intentos después de toda la lógica
+  setIntentos(nuevoIntentos);
 };
 
   // ... (el resto del componente se mantiene igual)
