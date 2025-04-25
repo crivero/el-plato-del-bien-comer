@@ -137,7 +137,17 @@ function JuegoAlimentos() {
 
   return (
     <div className="p-4 max-w-xl mx-auto text-center">
-      <h1 className="text-2xl font-bold mb-4">Clasifica el alimento</h1>
+      <h1 className="text-2xl font-bold mb-4">¡Vamos a Comer Bien!</h1>
+
+    {/* Imagen del Plato del Bien Comer */}
+    <div className="mb-6">
+      <img
+        src="https://raw.githubusercontent.com/crivero/el-plato-del-bien-comer/main/public/images/plato_bien_comer.png"
+        alt="Plato del Bien Comer"
+        className="mx-auto w-80 h-auto rounded-lg shadow-md"
+      />
+    </div>
+    
       <img src={alimentoActual.imagen} alt={alimentoActual.nombre} className="mx-auto h-32 object-contain mb-4" />
       <p className="mb-4 text-lg">¿A qué grupo pertenece <strong>{alimentoActual.nombre}</strong>?</p>
       <div className="grid grid-cols-2 gap-2 mb-4">
